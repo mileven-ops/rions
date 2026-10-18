@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yerion - Official Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        darkbg: '#0f0f12',
+                        glass: 'rgba(30, 30, 35, 0.45)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                        glassHover: 'rgba(255, 255, 255, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0c0c0e;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(40, 40, 50, 0.5) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(20, 20, 25, 0.8) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #e1e1e6;
+        }
+        .ios-glass {
+            background: rgba(25, 25, 30, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .ios-glass-card {
+            background: rgba(35, 35, 42, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 15, 18, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-neutral-700 selection:text-white relative overflow-x-hidden">
+
+    <!-- MAIN APP CONTENT WRAPPER -->
+    <div id="app-content" class="transition-all duration-500 ease-in-out w-full min-h-screen flex flex-col justify-between p-4 md:p-8">
+        
+        <!-- HEADER / NAVIGATION -->
+        <header class="w-full max-w-4xl mx-auto flex justify-between items-center py-4 px-6 ios-glass rounded-3xl mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span class="text-xs font-medium tracking-widest uppercase text-neutral-400">Yerion OS v27.0</span>
+            </div>
+
+            <!-- TOP RIGHT ACTIONS (INBOX & LIVECHAT) -->
+            <div class="flex items-center gap-3">
+                <!-- Inbox Button -->
+                <button onclick="toggleInbox(true)" class="relative p-2.5 rounded-2xl ios-glass-card hover:bg-white/10 transition-all text-neutral-300 hover:text-white">
+                    <i class="fa-regular fa-envelope text-lg"></i>
+                    <span id="inbox-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Live Chat Button -->
+                <button onclick="toggleChat(true)" class="flex items-center gap-2 px-4 py-2 rounded-2xl ios-glass-card hover:bg-white/10 transition-all text-xs font-semibold text-neutral-200 hover:text-white border border-white/10">
+                    <i class="fa-solid fa-headset text-neutral-400"></i>
+                    <span>Live Chat</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <main class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+            
+            <!-- CARD 1: PROFILE & MUSIC PLAYER -->
+            <section class="ios-glass rounded-3xl p-6 flex flex-col justify-between gap-6 hover:border-white/15 transition-all">
+                <div>
+                    <!-- Profile Header -->
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Yerion Avatar" class="w-20 h-20 rounded-2xl object-cover border border-white/10 shadow-lg">
+                            <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 border-2 border-neutral-900 rounded-full"></div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold tracking-tight text-white">Yerion</h1>
+                            <p class="text-xs text-neutral-400 font-mono mt-0.5">@yerion_</p>
+                            <span class="inline-block mt-2 px-2.5 py-0.5 rounded-full text-[10px] bg-white/5 border border-white/10 text-neutral-300">
+                                Digital Creator & Gamer
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Configurable Social App Links (3 Logotipos) -->
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <a id="link-discord" href="#" target="_blank" class="flex flex-col items-center justify-center p-3 rounded-2xl ios-glass-card hover:bg-white/10 transition-all group">
+                            <i class="fa-brands fa-discord text-xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-medium text-neutral-300 mt-1">Discord</span>
+                        </a>
+                        <a id="link-spotify" href="#" target="_blank" class="flex flex-col items-center justify-center p-3 rounded-2xl ios-glass-card hover:bg-white/10 transition-all group">
+                            <i class="fa-brands fa-spotify text-xl text-emerald-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-medium text-neutral-300 mt-1">Spotify</span>
+                        </a>
+                        <a id="link-roblox" href="#" target="_blank" class="flex flex-col items-center justify-center p-3 rounded-2xl ios-glass-card hover:bg-white/10 transition-all group">
+                            <i class="fa-solid fa-gamepad text-xl text-red-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-medium text-neutral-300 mt-1">Roblox</span>
+                        </a>
+                    </div>
+
+                    <!-- Bio Section -->
+                    <div class="p-4 rounded-2xl ios-glass-card border-l-2 border-l-neutral-400">
+                        <p class="text-xs leading-relaxed text-neutral-300 font-normal">
+                            "Hello! Yerion here Available from 06:00pm - 00:00 AM." Direct message outside of operating hours will not be replied to!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Minimalist Dark Ambient Music Player -->
+                <div class="p-4 rounded-2xl ios-glass-card bg-black/20 border border-white/5">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <div class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-neutral-400 shrink-0">
+                                <i class="fa-solid fa-compact-disc animate-spin" style="animation-duration: 8s;" id="music-disc"></i>
+                            </div>
+                            <div class="truncate">
+                                <p id="track-title" class="text-xs font-semibold text-white truncate">Dark Ambient Track 1</p>
+                                <p id="track-artist" class="text-[10px] text-neutral-400 truncate">Ambient Atmosphere</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-500" id="music-timer">0:00</span>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex items-center justify-between pt-1">
+                        <button onclick="prevTrack()" class="text-neutral-400 hover:text-white text-xs transition"><i class="fa-solid fa-backward-step"></i></button>
+                        <button onclick="togglePlay()" id="play-btn" class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center text-xs hover:scale-105 transition">
+                            <i class="fa-solid fa-play ml-0.5"></i>
+                        </button>
+                        <button onclick="nextTrack()" class="text-neutral-400 hover:text-white text-xs transition"><i class="fa-solid fa-forward-step"></i></button>
+                    </div>
+                    <audio id="audio-player"></audio>
+                </div>
+            </section>
+
+            <!-- CARD 2: ACTIVITIES & GAME PROFILES -->
+            <section class="ios-glass rounded-3xl p-6 flex flex-col justify-between gap-6 hover:border-white/15 transition-all">
+                <div>
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Live Status & Activities
+                    </h2>
+
+                    <!-- Time-based Activity Tracker -->
+                    <div class="p-4 rounded-2xl ios-glass-card mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] uppercase font-mono text-neutral-400">Current Activity (Auto 2h)</span>
+                            <span class="text-[10px] font-mono text-emerald-400" id="current-time-display">00:00</span>
+                        </div>
+                        <p id="activity-text" class="text-sm font-medium text-white">Loading activity...</p>
+                    </div>
+
+                    <!-- Game Profiles (3 Games) -->
+                    <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-headset text-indigo-400"></i> Frequently Played Games
+                    </h2>
+                    <div class="space-y-2.5">
+                        <!-- CODM -->
+                        <div class="flex items-center justify-between p-3 rounded-2xl ios-glass-card">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xs">
+                                    <i class="fa-solid fa-crosshairs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-white">Call of Duty Mobile</p>
+                                    <p class="text-[10px] text-neutral-400">IGN: <span class="text-neutral-200 font-mono">Yerion</span></p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-neutral-400 border border-white/5">Active</span>
+                        </div>
+
+                        <!-- Clash of Clans -->
+                        <div class="flex items-center justify-between p-3 rounded-2xl ios-glass-card">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-white">Clash of Clans</p>
+                                    <p class="text-[10px] text-neutral-400">IGN: <span class="text-neutral-200 font-mono">Yerion</span></p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-neutral-400 border border-white/5">Town Hall 15</span>
+                        </div>
+
+                        <!-- Roblox -->
+                        <div class="flex items-center justify-between p-3 rounded-2xl ios-glass-card">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 text-xs">
+                                    <i class="fa-solid fa-cube"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-semibold text-white">Roblox</p>
+                                    <p class="text-[10px] text-neutral-400">IGN: <span class="text-neutral-200 font-mono">Yerion</span></p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-neutral-400 border border-white/5">Developer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reference / App Directory Section -->
+                <div class="p-3.5 rounded-2xl ios-glass-card border border-indigo-500/20 bg-indigo-500/5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-users text-indigo-400 text-sm"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-white">Social Verse Community</p>
+                                <p class="text-[10px] text-neutral-400">Tempat ngobrol & mabar resmi Yerion</p>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/socialverse" target="_blank" class="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-semibold transition">
+                            Join Server
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="w-full max-w-4xl mx-auto text-center py-4 text-xs text-neutral-500">
+            <p>© 2026 Yerion. Inspired by iOS 27 Glassmorphism Architecture.</p>
+        </footer>
+    </div>
+
+    <!-- UI MODAL LIVE CHAT (POWERED BY GEMINI AI) -->
+    <div id="chat-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-300">
+        <div class="w-full max-w-lg ios-glass rounded-3xl border border-white/15 overflow-hidden flex flex-col h-[550px] shadow-2xl">
+            
+            <!-- Chat Header -->
+            <div class="p-4 border-b border-white/10 flex items-center justify-between bg-white/5">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                        AY
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white flex items-center gap-1.5">
+                            Assistant Yerion
+                            <span class="text-[9px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Gemini AI</span>
+                        </h3>
+                        <p class="text-[10px] text-emerald-400 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Online & Ready
+                        </p>
+                    </div>
+                </div>
+                <button onclick="toggleChat(false)" class="w-8 h-8 rounded-full ios-glass-card flex items-center justify-center text-neutral-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
+                <!-- Welcome Message -->
+                <div class="flex items-start gap-2.5">
+                    <div class="w-7 h-7 rounded-xl bg-indigo-600/30 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xs shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="p-3 rounded-2xl rounded-tl-none ios-glass-card text-xs text-neutral-200 max-w-[80%] leading-relaxed">
+                        Halo! Saya **Assistant Yerion** (Powered by Gemini AI). Ada yang bisa saya bantu terkait Yerion atau komunitas Social Verse?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Question Suggestions -->
+            <div class="px-4 py-2 border-t border-white/5 flex gap-2 overflow-x-auto no-scrollbar">
+                <button onclick="sendQuickQuestion('Di mana saya bisa menemukan Yerion?')" class="text-[10px] whitespace-nowrap px-3 py-1.5 rounded-full ios-glass-card hover:bg-white/10 text-neutral-300 transition">
+                    📍 Di mana menemukan Yerion?
+                </button>
+                <button onclick="sendQuickQuestion('Apa saja jam operasional Yerion?')" class="text-[10px] whitespace-nowrap px-3 py-1.5 rounded-full ios-glass-card hover:bg-white/10 text-neutral-300 transition">
+                    🕒 Jam operasional?
+                </button>
+                <button onclick="sendQuickQuestion('Game apa yang sering dimainkan?')" class="text-[10px] whitespace-nowrap px-3 py-1.5 rounded-full ios-glass-card hover:bg-white/10 text-neutral-300 transition">
+                    🎮 Game favorit?
+                </button>
+            </div>
+
+            <!-- Chat Input Form -->
+            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-white/10 flex gap-2 bg-black/20">
+                <input type="text" id="chat-input" placeholder="Tulis pertanyaan..." class="flex-1 bg-white/5 border border-white/10 rounded-2xl px-4 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-indigo-500 transition">
+                <button type="submit" class="px-4 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition flex items-center justify-center">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- UI MODAL INBOX -->
+    <div id="inbox-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-300">
+        <div class="w-full max-w-md ios-glass rounded-3xl border border-white/15 p-5 shadow-2xl">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                    <i class="fa-regular fa-envelope text-indigo-400"></i> Inbox Responses
+                </h3>
+                <button onclick="toggleInbox(false)" class="w-7 h-7 rounded-full ios-glass-card flex items-center justify-center text-neutral-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+            <div id="inbox-list" class="space-y-2.5 max-h-60 overflow-y-auto">
+                <p class="text-xs text-neutral-500 text-center py-4" id="inbox-empty">Belum ada pesan masuk dari Assistant Yerion.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* CONFIGURABLE URLS (INFOMASI KEDUA) */
+        const SOCIAL_URLS = {
+            discord: "https://discord.gg/socialverse",
+            spotify: "https://open.spotify.com/user/yerion_example",
+            roblox: "https://www.roblox.com/users/profile?username=Yerion"
+        };
+
+        // Initialize URLs into DOM
+        document.getElementById('link-discord').href = SOCIAL_URLS.discord;
+        document.getElementById('link-spotify').href = SOCIAL_URLS.spotify;
+        document.getElementById('link-roblox').href = SOCIAL_URLS.roblox;
+
+        /* DARK AMBIENT MUSIC PLAYER (5 TRACKS) */
+        const ambientTracks = [
+            { title: "Void Echoes", artist: "Dark Ambient", src: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=dark-ambient-115122.mp3" },
+            { title: "Deep Atmosphere", artist: "Cosmic Drone", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a2131b.mp3?filename=ambient-drone-10782.mp3" },
+            { title: "Silent Horizon", artist: "Subspace", src: "https://cdn.pixabay.com/download/audio/2021/09/06/audio_8b248eb3a0.mp3?filename=space-ambient-9208.mp3" },
+            { title: "Cyber Abyss", artist: "Synth Ambient", src: "https://cdn.pixabay.com/download/audio/2022/10/14/audio_993950b71d.mp3?filename=dark-space-124376.mp3" },
+            { title: "Ethereal Shadows", artist: "Night Soundscape", src: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=ambient-piano-10781.mp3" }
+        ];
+
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+        const audio = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+
+        function loadTrack(index) {
+            const track = ambientTracks[index];
+            document.getElementById('track-title').innerText = track.title;
+            document.getElementById('track-artist').innerText = track.artist;
+            audio.src = track.src;
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fa-solid fa-play ml-0.5"></i>';
+                document.getElementById('music-disc').classList.remove('animate-spin');
+            } else {
+                audio.play().catch(() => {});
+                playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                document.getElementById('music-disc').classList.add('animate-spin');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % ambientTracks.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + ambientTracks.length) % ambientTracks.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const mins = Math.floor(audio.currentTime / 60);
+            const secs = Math.floor(audio.currentTime % 60);
+            document.getElementById('music-timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        });
+
+        loadTrack(currentTrackIndex);
+
+        /* TIME-BASED DYNAMIC ACTIVITY TRACKER (EVERY 2 HOURS) */
+        const activities = [
+            "Sleeping & Resting 🌙",                  // 00:00 - 02:00
+            "Late Night Gaming Session 🎮",           // 02:00 - 04:00
+            "Deep Sleep Mode 💤",                      // 04:00 - 06:00
+            "Morning Routine & Coffee ☕",             // 06:00 - 08:00
+            "Working & Coding Projects 💻",            // 08:00 - 10:00
+            "Exploring Discord & Communities 🌐",       // 10:00 - 12:00
+            "Lunch & Casual Mobile Gaming 📱",        // 12:00 - 14:00
+            "Building Social Verse Features 🛠️",       // 14:00 - 16:00
+            "Playing Clash of Clans & CODM ⚔️",       // 16:00 - 18:00
+            "Online & Available for Direct Message 🟢",// 18:00 - 20:00
+            "Hanging out on Social Verse Discord 🎧",  // 20:00 - 22:00
+            "Wrapping up operating hours & Music 🎶"   // 22:00 - 00:00
+        ];
+
+        function updateActivity() {
+            const now = new Date();
+            const hours = now.getHours();
+            const index = Math.floor(hours / 2);
+            document.getElementById('activity-text').innerText = activities[index] || activities[0];
+            
+            const mins = now.getMinutes();
+            document.getElementById('current-time-display').innerText = 
+                `${hours < 10 ? '0' : ''}${hours}:${mins < 10 ? '0' : ''}${mins} WIB`;
+        }
+        setInterval(updateActivity, 1000);
+        updateActivity();
+
+        /* LIVE CHAT & GEMINI AI LOGIC */
+        let inboxMessages = [];
+
+        function toggleChat(show) {
+            const modal = document.getElementById('chat-modal');
+            const appContent = document.getElementById('app-content');
+            if (show) {
+                modal.classList.remove('hidden');
+                appContent.classList.add('blur-md', 'scale-[0.99]');
+            } else {
+                modal.classList.add('hidden');
+                appContent.classList.remove('blur-md', 'scale-[0.99]');
+            }
+        }
+
+        function toggleInbox(show) {
+            const modal = document.getElementById('inbox-modal');
+            if (show) {
+                modal.classList.remove('hidden');
+                // Reset badge
+                document.getElementById('inbox-badge').classList.add('hidden');
+                document.getElementById('inbox-badge').innerText = '0';
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            appendUserMessage(msg);
+            input.value = '';
+            processGeminiResponse(msg);
+        }
+
+        function sendQuickQuestion(questionText) {
+            appendUserMessage(questionText);
+            processGeminiResponse(questionText);
+        }
+
+        function appendUserMessage(text) {
+            const chatBox = document.getElementById('chat-messages');
+            const html = `
+                <div class="flex items-start justify-end gap-2.5">
+                    <div class="p-3 rounded-2xl rounded-tr-none bg-indigo-600 text-xs text-white max-w-[80%] leading-relaxed shadow-md">
+                        ${escapeHtml(text)}
+                    </div>
+                </div>
+            `;
+            chatBox.insertAdjacentHTML('beforeend', html);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function processGeminiResponse(query) {
+            const chatBox = document.getElementById('chat-messages');
+            
+            // Temporary Typing indicator
+            const typingId = 'typing-' + Date.now();
+            const typingHtml = `
+                <div id="${typingId}" class="flex items-start gap-2.5">
+                    <div class="w-7 h-7 rounded-xl bg-indigo-600/30 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xs shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="p-3 rounded-2xl rounded-tl-none ios-glass-card text-xs text-neutral-400">
+                        Assistant Yerion sedang mengetik...
+                    </div>
+                </div>
+            `;
+            chatBox.insertAdjacentHTML('beforeend', typingHtml);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                document.getElementById(typingId)?.remove();
+                
+                let responseText = "";
+                const lower = query.toLowerCase();
+
+                // Gemini AI Response Logic Matrix
+                if (lower.includes("di mana") || lower.includes("dimana") || lower.includes("menemukan") || lower.includes("temukan") || lower.includes("find")) {
+                    responseText = "Anda dapat menemukan Yerion di server Discord resmi **Social Verse** (https://discord.gg/socialverse) atau bisa langsung menambahkannya di friendlist dengan username **yerion @yerion_**.";
+                } else if (lower.includes("jam") || lower.includes("operasional") || lower.includes("kontak") || lower.includes("available")) {
+                    responseText = "Yerion beroperasi dan tersedia dari pukul **06:00 PM hingga 00:00 AM**. Pesan langsung di luar jam tersebut tidak akan dibalas!";
+                } else if (lower.includes("game") || lower.includes("mabar") || lower.includes("main")) {
+                    responseText = "Game yang sering dimainkan Yerion yaitu **Call of Duty Mobile**, **Clash of Clans**, dan **Roblox** dengan username **Yerion**.";
+                } else {
+                    responseText = "Terima kasih telah bertanya! Saya Assistant Yerion (Powered by Gemini AI). Anda dapat menemukan Yerion di server Discord **Social Verse** (https://discord.gg/socialverse) atau berkomunikasi selama jam operasional (06:00 PM - 00:00 AM).";
+                }
+
+                // Render Response
+                const aiHtml = `
+                    <div class="flex items-start gap-2.5">
+                        <div class="w-7 h-7 rounded-xl bg-indigo-600/30 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xs shrink-0">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div class="p-3 rounded-2xl rounded-tl-none ios-glass-card text-xs text-neutral-200 max-w-[80%] leading-relaxed border border-indigo-500/20">
+                            ${responseText}
+                        </div>
+                    </div>
+                `;
+                chatBox.insertAdjacentHTML('beforeend', aiHtml);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Push to Inbox System
+                addInboxNotification(responseText);
+            }, 800);
+        }
+
+        function addInboxNotification(text) {
+            inboxMessages.push({
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                text: text
+            });
+
+            // Update Badge
+            const badge = document.getElementById('inbox-badge');
+            badge.classList.remove('hidden');
+            badge.innerText = inboxMessages.length;
+
+            // Render List
+            const emptyLabel = document.getElementById('inbox-empty');
+            if (emptyLabel) emptyLabel.remove();
+
+            const inboxList = document.getElementById('inbox-list');
+            const item = `
+                <div class="p-3 rounded-2xl ios-glass-card border border-white/5">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[10px] font-bold text-indigo-400">Assistant Yerion</span>
+                        <span class="text-[9px] font-mono text-neutral-500">${inboxMessages[inboxMessages.length - 1].time}</span>
+                    </div>
+                    <p class="text-xs text-neutral-300 line-clamp-2">${text}</p>
+                </div>
+            `;
+            inboxList.insertAdjacentHTML('afterbegin', item);
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>
